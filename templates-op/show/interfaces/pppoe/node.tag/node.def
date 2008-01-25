@@ -1,0 +1,11 @@
+help: Show status of PPPOE interfaces
+
+allowed: local -a array ;
+         array=( /etc/ppp/peers/pppoe* ) ;
+         echo  -n ${array[@]##*/}
+
+run:     if [ -e /sys/class/net/$4 ]; then \
+                ${vyatta_bindir}/vyatta-show-interfaces pppoe $4 ; \
+         else \
+                echo ${4}: Link down ; \
+         fi

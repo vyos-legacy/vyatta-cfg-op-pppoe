@@ -1,0 +1,20 @@
+Source: vyatta-cfg-op-pppoe
+Section: contrib/net
+Priority: extra
+Maintainer: Bob Gilligan <gilligan@vyatta.co>
+Build-Depends: debhelper (>= 5), autotools-dev
+Standards-Version: 3.7.2
+
+Package: vyatta-cfg-op-pppoe
+Architecture: all
+Depends: bash (>= 3.1),
+ sed (>= 4.1.5),
+ perl (>= 5.8.8),
+ procps (>= 1:3.2.7-3),
+ coreutils (>= 5.97-5.3),
+ vyatta-cfg, sysv-rc, sudo,
+ vyatta-bash,
+ pppoe
+Suggests: util-linux (>= 2.13-5),
+Description: Vyatta config and op mode templates for PPPOE
+ Vyatta config and op mode templates for PPPOE

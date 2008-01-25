@@ -1,0 +1,2 @@
+vyatta-cfg-op-pppoe: file-in-unusual-dir
+vyatta-cfg-op-pppoe: dir-or-file-in-opt

@@ -1,0 +1,8 @@
+help: Bring PPPOE interface up
+
+run:    if [ -d /sys/class/net/$4 ]; then \
+                echo "PPPOE Interface $4 is already up." ; \
+        else \
+                echo "Bringing PPPOE interface $4 up." ; \
+                ( sudo /usr/sbin/pppd call $4 > /tmp/${4}.log 2>&1 & ) ; \
+        fi

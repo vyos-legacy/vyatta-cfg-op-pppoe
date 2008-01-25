@@ -1,0 +1,58 @@
+#
+# Configuration template for interface/ethernet/node.tag/pppoe
+#
+#
+# Define a PPPOE interface.  The value of this node is the PPPOE unit
+# number.  This number must be unique within the interface that it is
+# subordinate to, but need not be globally unique.  I.e. there can be a PPPOE
+# unit 3 under both eth1 and eth2.
+#
+#
+
+tag:
+type: u32
+
+help:  "PPPOE unit number."
+
+syntax:  (($(@) >= 0) && ($(@) <= 15)) ; "Only unit number must be between 0 and 15"
+
+#
+# Update script will only be called when a new node is created, so this
+# is essentially a create operation.  We initialize a new PPP provider
+# configuration file from our template.  Other parameters will be inserted
+#
+update:	"sudo rm -f /etc/ppp/peers/pppoe$(@) ; \
+	sudo cp /opt/vyatta/etc/pppoe-provider-template \
+	   /etc/ppp/peers/pppoe$(@) ;  \
+	sudo echo pty \\\"/usr/sbin/pppoe -I $(../@)\\\" >> \
+	     /etc/ppp/peers/pppoe$(@) ; \
+	sudo echo persist >> /etc/ppp/peers/pppoe$(@) ; \
+	sudo echo mtu 1492  >> /etc/ppp/peers/pppoe$(@) ; \
+        sudo echo defaultroute  >> /etc/ppp/peers/pppoe$(@) ; \
+	sudo echo usepeerdns  >> /etc/ppp/peers/pppoe$(@) ; \
+	sudo echo ipparam pppoe$(@) >> /etc/ppp/peers/pppoe$(@) "
+
+#
+# Delete means that this node and the tree below it has been deleted.
+# We can delete the PPP provider configuration file.  The running PPPOE
+# Daemon will be killed at "end:"
+# 
+delete:	"sudo rm -f /etc/ppp/peers/pppoe$(@)"
+
+#
+# Three cases are handled here:
+#  1) A new PPPOE configuration node has just been added.  Parameters may or
+#     may not have also been added.
+#  2) Some configuration parameters of a previously existing PPPOE node
+#     have been changed.
+#  3) A previously existing PPPOE configuration node has been deleted.
+# 
+# In case (1) we need to start the daemon for the first time.
+# In case (2) we need to kill and restart the daemon.
+# In case (3) we need to kill the daemon.
+#
+end:    "sudo poff pppoe$(@) | logger -p debug -t pppoe$(@)-template ; \
+         if [ -e /etc/ppp/peers/pppoe$(@) ]; then \
+                ( sudo /usr/sbin/pppd call pppoe$(@) > /tmp/pppoe$(@).log 2>&1 &
+ ) ; \
+         fi"

@@ -1,0 +1,12 @@
+#
+# Configuration template for the .../pppoe/node.tag/access-concentrator
+# parameter.
+#
+# If set, only connect to access concentrator with this name.
+#
+
+type: txt
+
+help: "Restrict connections to this access concentrator only."
+
+

@@ -1,0 +1,14 @@
+#
+# Configuration template for the .../pppoe/node.tag/service-name parameter
+#
+# If set, connect only to access concentrators offering this named
+# service
+#
+
+type: txt
+
+help: "Restrict connections to access concentrators offering this named service"
+
+
+
+

@@ -1,0 +1,18 @@
+#
+# Configuration template for the .../pppoe/node.tag/remote-address parameter
+#
+# Set the IPv4 address of the remote end of the PPPOE link.
+#
+
+type: ipv4
+
+help: "The IPv4 address of the remote end of the PPPOE link."
+
+update: "sudo sed -i '/^[0-9:]/d' /etc/ppp/peers/pppoe$(../@) ; \
+        sudo echo $(../local-address/@):$(@) >> /etc/ppp/peers/pppoe$(../@)"
+
+delete: "sudo sed -i '/^[0-9:]/d' /etc/ppp/peers/pppoe$(../@) ; \
+	if [ -z \"$(../local-address/@)\" ]; then \
+  	      sudo echo $(../local-address/@): >> /etc/ppp/peers/pppoe$(../@) ; \
+        fi"
+

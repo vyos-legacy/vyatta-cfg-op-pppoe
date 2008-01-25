@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#
+# Script to re-name ppp interface being used by pppoe to have
+# a form: pppoe<unit>.
+#
+# The name of the current ppp interface is passed in as argument 1.  The full
+# name that we are to change it to is passed in as argument 6.  We don't
+# use the rest of the arguments.
+#
+
+OLD_IFNAME=$1
+NEW_IFNAME=$6
+
+IFPREFIX=`echo $NEW_IFNAME | sed s/[0-9]//g`
+
+DEFROUTE=`netstat -nra | grep ^0.0.0.0 | grep $OLD_IFNAME`
+
+#
+# The ppp daemon executes this script for all ppp interfaces, even those
+# unrelated to pppoe.  We want to change the names only of
+# interface being used by pppoe.
+#
+if [ "$IFPREFIX" = "pppoe" ]; then
+    # Re-name the interface
+    logger -p debug -t "vyatta pppoe"  Re-naming $OLD_IFNAME to $NEW_IFNAME
+    /sbin/ifconfig $OLD_IFNAME down | logger -p debug -t "vyatta pppoe"
+    /sbin/ifrename -c /dev/null -i $OLD_IFNAME -n $NEW_IFNAME | \
+	logger -p debug -t "vyatta pppoe"
+    /sbin/ifconfig $NEW_IFNAME up | logger -p debug -t "vyatta pppoe"
+
+    # Restore the automatic default route, if one existed
+    if [ ! -z "$DEFROUTE" ]; then
+	ip route add to default dev $NEW_IFNAME | \
+            logger -p debug -t "vyatta pppoe"
+    fi
+fi
+
+

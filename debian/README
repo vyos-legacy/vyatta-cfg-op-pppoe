@@ -1,0 +1,6 @@
+The Debian Package vyatta-cfg-op-pppoe
+----------------------------
+
+This package has the Vyatta config and op mode templates and scripts for PPPOE.
+
+ -- Bob Gilligan <gilligan@vyatta.com> Tue, 8 Jan 2008
