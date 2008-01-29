@@ -14,7 +14,19 @@ type: u32
 
 help:  "PPPOE unit number."
 
-syntax:  (($(@) >= 0) && ($(@) <= 15)) ; "Only unit number must be between 0 and 15"
+syntax:  ((($(@) >= 0) && ($(@) <= 15)) ; \
+        "Only unit number must be between 0 and 15") && \
+        ( exec "NOT_OURS=`grep -s ^pty /etc/ppp/peers/pppoe$(@) | grep -v -c $(.
+./@)` ; \
+                if [ \\$NOT_OURS -eq 0 ]; then \
+                        exit 0 ; \
+                else \
+                        exit 1 ; \
+                fi " ; \
+        "Unit number must be unique. Units already in use are: $(../@@/pppoe/@@)
+" )
+
+
 
 #
 # Update script will only be called when a new node is created, so this
