@@ -6,14 +6,14 @@
 
 type: ipv4
 
-help: "IPv4 address of the local end of the PPPOE link"
+help: IPv4 address of the local end of the PPPOE link
 
-update: "sudo sed -i '/^[0-9:]/d' /etc/ppp/peers/pppoe$(../@) ; \
-        sudo echo $(@):$(../remote-address/@) >> /etc/ppp/peers/pppoe$(../@)"
+update:expression: "sudo sed -i '/^[0-9:]/d' /etc/ppp/peers/pppoe$VAR(../@) ; \
+        sudo echo $VAR(@):$VAR(../remote-address/@) >> /etc/ppp/peers/pppoe$VAR(../@)"
 
-delete: "sudo sed -i '/^[0-9:]/d' /etc/ppp/peers/pppoe$(../@) ; \
-	if [ ! -z \"$(../remote-address/@)\" ]; then \
-	        sudo echo :$(../remote-address/@) >> /etc/ppp/peers/pppoe$(../@) ; \
+delete:expression: "sudo sed -i '/^[0-9:]/d' /etc/ppp/peers/pppoe$VAR(../@) ; \
+	if [ ! -z \"$VAR(../remote-address/@)\" ]; then \
+	        sudo echo :$VAR(../remote-address/@) >> /etc/ppp/peers/pppoe$VAR(../@) ; \
 	fi"
 
 

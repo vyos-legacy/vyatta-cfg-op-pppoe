@@ -9,11 +9,11 @@
 
 type: u32
 
-help: "Amount of time in seconds to wait before disconnecting an idle session.  Never disconnect if set to zero"
+help: Amount of time in seconds to wait before disconnecting an idle session.  Never disconnect if set to zero
 
-syntax: ($(@) >= 0) ; "Idle timeout can not be negative"
+syntax:expression: ($VAR(@) >= 0) ; "Idle timeout can not be negative"
 
-update: "sudo sed -i '/^idle/d' /etc/ppp/peers/pppoe$(../@) ; \
-        sudo echo idle $(@) >> /etc/ppp/peers/pppoe$(../@)"
+update:expression: "sudo sed -i '/^idle/d' /etc/ppp/peers/pppoe$VAR(../@) ; \
+        sudo echo idle $VAR(@) >> /etc/ppp/peers/pppoe$VAR(../@)"
 
-delete: "sudo sed -i '/^idle/d' /etc/ppp/peers/pppoe$(../@)"
+delete:expression: "sudo sed -i '/^idle/d' /etc/ppp/peers/pppoe$VAR(../@)"

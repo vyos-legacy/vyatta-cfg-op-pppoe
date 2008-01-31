@@ -9,9 +9,9 @@
 
 type: txt
 
-help:  "Name that local machine should use in authenticating itself to the remote PPPOE server. Used in conjunction with the local-password parameter"
+help: Name that local machine should use in authenticating itself to the remote PPPOE server. Used in conjunction with the local-password parameter
 
-update: "sudo sed -i '/^user/d' /etc/ppp/peers/pppoe$(../@) ; \
-	sudo echo user $(@) >> /etc/ppp/peers/pppoe$(../@)"
+update:expression: "sudo sed -i '/^user/d' /etc/ppp/peers/pppoe$VAR(../@) ; \
+	sudo echo user $VAR(@) >> /etc/ppp/peers/pppoe$VAR(../@)"
 
-delete: "sudo sed -i '/^user/d' /etc/ppp/peers/pppoe$(../@)"
+delete:expression: "sudo sed -i '/^user/d' /etc/ppp/peers/pppoe$VAR(../@)"

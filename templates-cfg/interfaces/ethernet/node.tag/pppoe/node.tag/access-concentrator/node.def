@@ -7,6 +7,6 @@
 
 type: txt
 
-help: "Restrict connections to this access concentrator only."
+help: Restrict connections to this access concentrator only.
 
 

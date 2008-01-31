@@ -9,9 +9,9 @@
 
 type: txt
 
-help: "Password to use in authenticating the local machine to the remote PPPOE server.  Used in conjunction with the local-username parameter."
+help: Password to use in authenticating the local machine to the remote PPPOE server.  Used in conjunction with the local-username parameter.
 
-update: "sudo sed -i '/^password/d' /etc/ppp/peers/pppoe$(../@) ; \
-        sudo echo password $(@) >> /etc/ppp/peers/pppoe$(../@)"
+update:expression: "sudo sed -i '/^password/d' /etc/ppp/peers/pppoe$VAR(../@) ; \
+        sudo echo password $VAR(@) >> /etc/ppp/peers/pppoe$VAR(../@)"
 
-delete: "sudo sed -i '/^password/d' /etc/ppp/peers/pppoe$(../@)"
+delete:expression: "sudo sed -i '/^password/d' /etc/ppp/peers/pppoe$VAR(../@)"

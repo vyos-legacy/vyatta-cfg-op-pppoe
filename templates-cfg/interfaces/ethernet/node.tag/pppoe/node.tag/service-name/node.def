@@ -7,7 +7,7 @@
 
 type: txt
 
-help: "Restrict connections to access concentrators offering this named service"
+help: Restrict connections to access concentrators offering this named service
 
 
 

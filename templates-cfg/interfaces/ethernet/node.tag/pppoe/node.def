@@ -12,18 +12,18 @@
 tag:
 type: u32
 
-help:  "PPPOE unit number."
+help: PPPOE unit number.
 
-syntax:  ((($(@) >= 0) && ($(@) <= 15)) ; \
+syntax:expression:  ((($VAR(@) >= 0) && ($VAR(@) <= 15)) ; \
         "Only unit number must be between 0 and 15") && \
-        ( exec "NOT_OURS=`grep -s ^pty /etc/ppp/peers/pppoe$(@) | grep -v -c $(.
+        ( exec "NOT_OURS=`grep -s ^pty /etc/ppp/peers/pppoe$VAR(@) | grep -v -c $(.
 ./@)` ; \
-                if [ \\$NOT_OURS -eq 0 ]; then \
+                if [ $NOT_OURS -eq 0 ]; then \
                         exit 0 ; \
                 else \
                         exit 1 ; \
                 fi " ; \
-        "Unit number must be unique. Units already in use are: $(../@@/pppoe/@@)
+        "Unit number must be unique. Units already in use are: $VAR(../@@/pppoe/@@)
 " )
 
 
@@ -33,23 +33,23 @@ syntax:  ((($(@) >= 0) && ($(@) <= 15)) ; \
 # is essentially a create operation.  We initialize a new PPP provider
 # configuration file from our template.  Other parameters will be inserted
 #
-update:	"sudo rm -f /etc/ppp/peers/pppoe$(@) ; \
+update:	"sudo rm -f /etc/ppp/peers/pppoe$VAR(@) ; \
 	sudo cp /opt/vyatta/etc/pppoe-provider-template \
-	   /etc/ppp/peers/pppoe$(@) ;  \
-	sudo echo pty \\\"/usr/sbin/pppoe -I $(../@)\\\" >> \
-	     /etc/ppp/peers/pppoe$(@) ; \
-	sudo echo persist >> /etc/ppp/peers/pppoe$(@) ; \
-	sudo echo mtu 1492  >> /etc/ppp/peers/pppoe$(@) ; \
-        sudo echo defaultroute  >> /etc/ppp/peers/pppoe$(@) ; \
-	sudo echo usepeerdns  >> /etc/ppp/peers/pppoe$(@) ; \
-	sudo echo ipparam pppoe$(@) >> /etc/ppp/peers/pppoe$(@) "
+	   /etc/ppp/peers/pppoe$VAR(@) ;  \
+	sudo echo pty \\\"/usr/sbin/pppoe -I $VAR(../@)\\\" >> \
+	     /etc/ppp/peers/pppoe$VAR(@) ; \
+	sudo echo persist >> /etc/ppp/peers/pppoe$VAR(@) ; \
+	sudo echo mtu 1492  >> /etc/ppp/peers/pppoe$VAR(@) ; \
+        sudo echo defaultroute  >> /etc/ppp/peers/pppoe$VAR(@) ; \
+	sudo echo usepeerdns  >> /etc/ppp/peers/pppoe$VAR(@) ; \
+	sudo echo ipparam pppoe$VAR(@) >> /etc/ppp/peers/pppoe$VAR(@) "
 
 #
 # Delete means that this node and the tree below it has been deleted.
 # We can delete the PPP provider configuration file.  The running PPPOE
 # Daemon will be killed at "end:"
 # 
-delete:	"sudo rm -f /etc/ppp/peers/pppoe$(@)"
+delete:	"sudo rm -f /etc/ppp/peers/pppoe$VAR(@)"
 
 #
 # Three cases are handled here:
@@ -63,8 +63,8 @@ delete:	"sudo rm -f /etc/ppp/peers/pppoe$(@)"
 # In case (2) we need to kill and restart the daemon.
 # In case (3) we need to kill the daemon.
 #
-end:    "sudo poff pppoe$(@) | logger -p debug -t pppoe$(@)-template ; \
-         if [ -e /etc/ppp/peers/pppoe$(@) ]; then \
-                ( sudo /usr/sbin/pppd call pppoe$(@) > /tmp/pppoe$(@).log 2>&1 &
+end:expression:    "sudo poff pppoe$VAR(@) | logger -p debug -t pppoe$VAR(@)-template ; \
+         if [ -e /etc/ppp/peers/pppoe$VAR(@) ]; then \
+                ( sudo /usr/sbin/pppd call pppoe$VAR(@) > /tmp/pppoe$VAR(@).log 2>&1 &
  ) ; \
          fi"
