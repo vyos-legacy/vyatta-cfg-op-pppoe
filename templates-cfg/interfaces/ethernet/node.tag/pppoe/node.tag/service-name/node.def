@@ -1,14 +1,19 @@
 #
-# Configuration template for the .../pppoe/node.tag/service-name parameter
+# Configuration template for the .../pppoe/node.tag/service-name
+# parameter.
 #
-# If set, connect only to access concentrators offering this named
-# service
+# If set, only connect to access concentrator advertizing this service name
+# only.
 #
 
 type: txt
 
-help: "Restrict connections to access concentrators offering this named service"
+help: "Connect only to access concentrators advertizing this service name."
 
+syntax: pattern $(@) "^[a-zA-Z0-9]+$" ; "Service name must be composed of uppper and lower case letters or numbers only"
 
+update: "sudo sed -r -i 's/ -S [a-zA-Z0-9]+//' /etc/ppp/peers/pppoe$(../@) ; \
+	sudo sed -i 's+/usr/sbin/pppoe+/usr/sbin/pppoe -S $(@)+' /etc/ppp/peers/pppoe$(../@)"
 
+delete: "sudo sed -r -i 's/ -S [a-zA-Z0-9]+//' /etc/ppp/peers/pppoe$(../@)"
 

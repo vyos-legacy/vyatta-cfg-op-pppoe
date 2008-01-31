@@ -8,7 +8,7 @@ type: u32
 
 help: "Set the IP layer Maximum Transmission Unit (MTU), in bytes"
 
-syntax: (($(@) > 576) && ($(@) <= 1492)) ; "MTU must be between 576 and 1492"
+syntax: (($(@) > 68) && ($(@) <= 1492)) ; "MTU must be between 68 and 1492"
 
 update: "sudo sed -i '/^mtu/d' /etc/ppp/peers/pppoe$(../@) ; \
         sudo echo mtu $(@) >> /etc/ppp/peers/pppoe$(../@)"

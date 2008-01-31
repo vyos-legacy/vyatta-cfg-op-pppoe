@@ -9,4 +9,10 @@ type: txt
 
 help: "Restrict connections to this access concentrator only."
 
+syntax: pattern $(@) "^[a-zA-Z0-9]+$" ; "Access concentrator name must be composed of uppper and lower case letters or numbers only"
+
+update: "sudo sed -r -i 's/ -C [a-zA-Z0-9]+//' /etc/ppp/peers/pppoe$(../@) ; \
+	sudo sed -i 's+/usr/sbin/pppoe+/usr/sbin/pppoe -C $(@)+' /etc/ppp/peers/pppoe$(../@)"
+
+delete: "sudo sed -r -i 's/ -C [a-zA-Z0-9]+//' /etc/ppp/peers/pppoe$(../@)"
 
