@@ -17,7 +17,7 @@ help: PPPOE unit number.
 
 syntax:expression:  ((($VAR(@) >= 0) && ($VAR(@) <= 15)) ; \
         "Only unit number must be between 0 and 15") && \
-        ( exec "NOT_OURS=`grep -s ^pty /etc/ppp/peers/pppoe$VAR(@) | grep -v -c $(../@)` ; \
+        ( exec "NOT_OURS=`grep -s ^pty /etc/ppp/peers/pppoe$VAR(@) | grep -v -c $VAR(../@)` ; \
                 if [ $NOT_OURS -eq 0 ]; then \
                         exit 0 ; \
                 else \
