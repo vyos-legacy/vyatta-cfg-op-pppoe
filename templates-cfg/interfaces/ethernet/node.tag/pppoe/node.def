@@ -10,21 +10,20 @@
 #
 
 tag:
+
 type: u32
 
 help: PPPOE unit number.
 
 syntax:expression:  ((($VAR(@) >= 0) && ($VAR(@) <= 15)) ; \
         "Only unit number must be between 0 and 15") && \
-        ( exec "NOT_OURS=`grep -s ^pty /etc/ppp/peers/pppoe$VAR(@) | grep -v -c $(.
-./@)` ; \
+        ( exec "NOT_OURS=`grep -s ^pty /etc/ppp/peers/pppoe$VAR(@) | grep -v -c $(../@)` ; \
                 if [ $NOT_OURS -eq 0 ]; then \
                         exit 0 ; \
                 else \
                         exit 1 ; \
                 fi " ; \
-        "Unit number must be unique. Units already in use are: $VAR(../@@/pppoe/@@)
-" )
+        "Unit number must be unique. Units already in use are: $VAR(../@@/pppoe/@@)" )
 
 
 
@@ -33,7 +32,7 @@ syntax:expression:  ((($VAR(@) >= 0) && ($VAR(@) <= 15)) ; \
 # is essentially a create operation.  We initialize a new PPP provider
 # configuration file from our template.  Other parameters will be inserted
 #
-update:	"sudo rm -f /etc/ppp/peers/pppoe$VAR(@) ; \
+update:expression:	"sudo rm -f /etc/ppp/peers/pppoe$VAR(@) ; \
 	sudo cp /opt/vyatta/etc/pppoe-provider-template \
 	   /etc/ppp/peers/pppoe$VAR(@) ;  \
 	sudo echo pty \\\"/usr/sbin/pppoe -I $VAR(../@)\\\" >> \
@@ -49,7 +48,7 @@ update:	"sudo rm -f /etc/ppp/peers/pppoe$VAR(@) ; \
 # We can delete the PPP provider configuration file.  The running PPPOE
 # Daemon will be killed at "end:"
 # 
-delete:	"sudo rm -f /etc/ppp/peers/pppoe$VAR(@)"
+delete:expression:	"sudo rm -f /etc/ppp/peers/pppoe$VAR(@)"
 
 #
 # Three cases are handled here:
