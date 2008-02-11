@@ -35,10 +35,11 @@ syntax:expression:  ((($VAR(@) >= 0) && ($VAR(@) <= 15)) ; \
 update:expression:	"sudo rm -f /etc/ppp/peers/pppoe$VAR(@) ; \
 	sudo cp /opt/vyatta/etc/pppoe-provider-template \
 	   /etc/ppp/peers/pppoe$VAR(@) ;  \
-	sudo echo pty \\\"/usr/sbin/pppoe -I $VAR(../@)\\\" >> \
+	sudo echo pty \\\"/usr/sbin/pppoe -m 1412 -I $VAR(../@)\\\" >> \
 	     /etc/ppp/peers/pppoe$VAR(@) ; \
 	sudo echo persist >> /etc/ppp/peers/pppoe$VAR(@) ; \
 	sudo echo mtu 1492  >> /etc/ppp/peers/pppoe$VAR(@) ; \
+	sudo echo mru 1492  >> /etc/ppp/peers/pppoe$VAR(@) ; \
         sudo echo defaultroute  >> /etc/ppp/peers/pppoe$VAR(@) ; \
 	sudo echo usepeerdns  >> /etc/ppp/peers/pppoe$VAR(@) ; \
 	sudo echo ipparam pppoe$VAR(@) >> /etc/ppp/peers/pppoe$VAR(@) "
