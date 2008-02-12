@@ -2,6 +2,8 @@
 # Configuration template for the .../pppoe/node.tag/mtu parameter
 #
 # Set the IP layer Maximum Transmission Unit (MTU) for the PPPOE interface.
+# The value of the MRU option that we negotiate should match our MTU,
+# so we set both the mtu and mru values in the ppp config file.
 #
 
 type: u32
@@ -11,10 +13,14 @@ help: Set the IP layer Maximum Transmission Unit (MTU), in bytes
 syntax:expression: (($VAR(@) > 68) && ($VAR(@) <= 1492)) ; "MTU must be between 68 and 1492"
 
 update:expression: "sudo sed -i '/^mtu/d' /etc/ppp/peers/pppoe$VAR(../@) ; \
-        sudo echo mtu $VAR(@) >> /etc/ppp/peers/pppoe$VAR(../@)"
+        sudo echo mtu $VAR(@) >> /etc/ppp/peers/pppoe$VAR(../@) ; \
+	sudo sed -i '/^mru/d' /etc/ppp/peers/pppoe$VAR(../@) ; \
+        sudo echo mru $VAR(@) >> /etc/ppp/peers/pppoe$VAR(../@)"
 
 delete:expression: "sudo sed -i '/^mtu/d' /etc/ppp/peers/pppoe$VAR(../@) ; \
-        sudo echo mtu 1492 >> /etc/ppp/peers/pppoe$VAR(../@)"
+        sudo echo mtu 1492 >> /etc/ppp/peers/pppoe$VAR(../@) ; \
+	sudo sed -i '/^mru/d' /etc/ppp/peers/pppoe$VAR(../@) ; \
+        sudo echo mru 1492 >> /etc/ppp/peers/pppoe$VAR(../@)"
 
 
 
