@@ -37,6 +37,8 @@ install-exec-hook:
 	chmod 755 $(DESTDIR)/etc/ppp/ip-up.d/0002vyatta-pppoe
 	mkdir -p $(DESTDIR)/opt/vyatta/etc
 	cp sysconf/pppoe-provider-template $(DESTDIR)/opt/vyatta/etc
+	mkdir -p $(DESTDIR)/etc
+	cd etc ; $(cpiop) $(DESTDIR)/etc
 
 
 
