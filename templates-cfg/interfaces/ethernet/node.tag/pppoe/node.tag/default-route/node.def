@@ -18,13 +18,13 @@ help: Enable/disable automaticly adding default route to peer when link comes up
 
 syntax:expression: $VAR(@) in "auto","none" ; "Must be either auto or none"
 
-update:expression: "sudo sed -i '/^defaultroute/d' /etc/ppp/peers/pppoe$VAR(../@) ; \
-	if [ \"$VAR(@)\" = \"auto\" ]; then \
-	        sudo echo defaultroute >> /etc/ppp/peers/pppoe$VAR(../@) ; \
-	fi"
+update:	sudo sed -i '/^defaultroute/d' /etc/ppp/peers/pppoe$VAR(../@)
+	if [ "$VAR(@)" = "auto" ]; then
+	        sudo sh -c "echo defaultroute >> /etc/ppp/peers/pppoe$VAR(../@)"
+	fi
 
 #
 # If this parameter is deleted, behave as if it were set to "auto"
 #
-delete:expression: "sudo sed -i '/^defaultroute/d' /etc/ppp/peers/pppoe$VAR(../@) ; \
-	 sudo echo defaultroute >> /etc/ppp/peers/pppoe$VAR(../@)"
+delete:	sudo sed -i '/^defaultroute/d' /etc/ppp/peers/pppoe$VAR(../@)
+	sudo sh -c "echo defaultroute >> /etc/ppp/peers/pppoe$VAR(../@)"

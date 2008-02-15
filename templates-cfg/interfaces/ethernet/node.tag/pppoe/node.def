@@ -32,24 +32,24 @@ syntax:expression:  ((($VAR(@) >= 0) && ($VAR(@) <= 15)) ; \
 # is essentially a create operation.  We initialize a new PPP provider
 # configuration file from our template.  Other parameters will be inserted
 #
-update:expression:	"sudo rm -f /etc/ppp/peers/pppoe$VAR(@) ; \
+update:	sudo rm -f /etc/ppp/peers/pppoe$VAR(@)
 	sudo cp /opt/vyatta/etc/pppoe-provider-template \
-	   /etc/ppp/peers/pppoe$VAR(@) ;  \
-	sudo echo pty \\\"/usr/sbin/pppoe -m 1412 -I $VAR(../@)\\\" >> \
-	     /etc/ppp/peers/pppoe$VAR(@) ; \
-	sudo echo persist >> /etc/ppp/peers/pppoe$VAR(@) ; \
-	sudo echo mtu 1492  >> /etc/ppp/peers/pppoe$VAR(@) ; \
-	sudo echo mru 1492  >> /etc/ppp/peers/pppoe$VAR(@) ; \
-        sudo echo defaultroute  >> /etc/ppp/peers/pppoe$VAR(@) ; \
-	sudo echo usepeerdns  >> /etc/ppp/peers/pppoe$VAR(@) ; \
-	sudo echo ipparam pppoe$VAR(@) >> /etc/ppp/peers/pppoe$VAR(@) "
+	   /etc/ppp/peers/pppoe$VAR(@) 
+	sudo sh -c "echo pty \"/usr/sbin/pppoe -m 1412 -I $VAR(../@)\" >> \
+	     /etc/ppp/peers/pppoe$VAR(@)"
+	sudo sh -c "echo persist >> /etc/ppp/peers/pppoe$VAR(@)"
+	sudo sh -c "echo mtu 1492  >> /etc/ppp/peers/pppoe$VAR(@)"
+	sudo sh -c "echo mru 1492  >> /etc/ppp/peers/pppoe$VAR(@)"
+        sudo sh -c "echo defaultroute  >> /etc/ppp/peers/pppoe$VAR(@)"
+	sudo sh -c "echo usepeerdns  >> /etc/ppp/peers/pppoe$VAR(@)"
+	sudo sh -c "echo ipparam pppoe$VAR(@) >> /etc/ppp/peers/pppoe$VAR(@)"
 
 #
 # Delete means that this node and the tree below it has been deleted.
 # We can delete the PPP provider configuration file.  The running PPPOE
 # Daemon will be killed at "end:"
 # 
-delete:expression:	"sudo rm -f /etc/ppp/peers/pppoe$VAR(@)"
+delete:	sudo rm -f /etc/ppp/peers/pppoe$VAR(@)
 
 #
 # Three cases are handled here:
@@ -63,8 +63,7 @@ delete:expression:	"sudo rm -f /etc/ppp/peers/pppoe$VAR(@)"
 # In case (2) we need to kill and restart the daemon.
 # In case (3) we need to kill the daemon.
 #
-end:expression:    "sudo poff pppoe$VAR(@) | logger -p debug -t pppoe$VAR(@)-template ; \
-         if [ -e /etc/ppp/peers/pppoe$VAR(@) ]; then \
-                ( sudo /usr/sbin/pppd call pppoe$VAR(@) > /tmp/pppoe$VAR(@).log 2>&1 &
- ) ; \
-         fi"
+end:	sudo poff pppoe$VAR(@) | logger -p debug -t pppoe$VAR(@)-template
+	if [ -e /etc/ppp/peers/pppoe$VAR(@) ]; then
+                ( sudo /usr/sbin/pppd call pppoe$VAR(@) > /tmp/pppoe$VAR(@).log 2>&1 & )
+	fi

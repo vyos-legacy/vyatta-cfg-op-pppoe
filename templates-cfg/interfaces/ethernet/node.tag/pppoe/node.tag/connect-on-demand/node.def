@@ -21,10 +21,10 @@
 
 help: Automatically establish PPPOE connection when traffic is sent.
 
-update:expression: "sudo sed -i '/^demand/d' /etc/ppp/peers/pppoe$VAR(../@) ; \
-	sudo sed -i '/^persist/d' /etc/ppp/peers/pppoe$VAR(../@) ; \
-        sudo echo demand >> /etc/ppp/peers/pppoe$VAR(../@)"
+update:	sudo sed -i '/^demand/d' /etc/ppp/peers/pppoe$VAR(../@)
+	sudo sed -i '/^persist/d' /etc/ppp/peers/pppoe$VAR(../@)
+        sudo sh -c "echo demand >> /etc/ppp/peers/pppoe$VAR(../@)"
 
-delete:expression: "sudo sed -i '/^demand/d' /etc/ppp/peers/pppoe$VAR(../@) ; \
-	sudo sed -i '/^persist/d' /etc/ppp/peers/pppoe$VAR(../@) ; \
-        sudo echo persist >> /etc/ppp/peers/pppoe$VAR(../@)"
+delete:	sudo sed -i '/^demand/d' /etc/ppp/peers/pppoe$VAR(../@)
+	sudo sed -i '/^persist/d' /etc/ppp/peers/pppoe$VAR(../@)
+        sudo sh -c "echo persist >> /etc/ppp/peers/pppoe$VAR(../@)"

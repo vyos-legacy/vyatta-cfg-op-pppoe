@@ -18,13 +18,13 @@ help: Enable or disable automatic use of name server entries from peer
 
 syntax:expression: $VAR(@) in "auto","none" ; "Must be either \"auto\" or \"none\""
 
-update:expression: "sudo sed -i '/^usepeerdns/d' /etc/ppp/peers/pppoe$VAR(../@) ; \
-	if [ \"$VAR(@)\" = \"auto\" ]; then \
-	        sudo echo usepeerdns >> /etc/ppp/peers/pppoe$VAR(../@) ; \
-	fi"
+update:	sudo sed -i '/^usepeerdns/d' /etc/ppp/peers/pppoe$VAR(../@)
+	if [ "$VAR(@)" = "auto" ]; then
+	        sudo sh -c "echo usepeerdns >> /etc/ppp/peers/pppoe$VAR(../@)"
+	fi
 
 #
 # If this parameter is deleted, behave as if it were set to "auto"
 #
-delete:expression: "sudo sed -i '/^usepeerdns/d' /etc/ppp/peers/pppoe$VAR(../@) ; \
-	 sudo echo usepeerdns >> /etc/ppp/peers/pppoe$VAR(../@)"
+delete:	sudo sed -i '/^usepeerdns/d' /etc/ppp/peers/pppoe$VAR(../@)
+	sudo sh -c "echo usepeerdns >> /etc/ppp/peers/pppoe$VAR(../@)"
