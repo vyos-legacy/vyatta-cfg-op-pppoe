@@ -14,4 +14,4 @@
 /INSTALL
 /Makefile.in
 /Makefile
-debian/vyatta-cfg-op-pppoe
+debian/vyatta-cfg-op-pppoe*
