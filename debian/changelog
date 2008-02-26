@@ -1,3 +1,32 @@
+vyatta-cfg-op-pppoe (0.2) unstable; urgency=low
+
+  vc4.0.0
+  [ Mark O'Brien ]
+
+
+  [ An-Cheng Huang ]
+  * convert templates to new syntax
+
+  [ Bob Gilligan ]
+  * Ensure that user can not use the same PPPOE unit number under
+    different
+  * Add support access-concentrator and service-name commands.
+  * Fix typos that broke with new  syntax.
+  * Second try at fixing the typo.
+  * Bugfix: 2788
+  * Always advertise an MRU that matches the MTU.
+  * Bugfix: 2775
+  * Don't check in a derived file.
+  * Bugfix: 2830
+
+  [ rbalocca ]
+  * Ingore a set of derived files
+  * Ignore derived files
+
+  [ Mark O'Brien ]
+
+ -- Mark O'Brien <mobrien@vyatta.com>  Mon, 25 Feb 2008 17:38:09 -0800
+
 vyatta-cfg-op-pppoe (0.1) unstable; urgency=low
 
   * Initial Release.
