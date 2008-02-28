@@ -1,8 +1,8 @@
 help: Bring PPPOE interface down
 
-run:    if [ -d /sys/class/net/$4 ]; then \
+run:    if [ -d "/sys/class/net/$4" ]; then \
                 echo "Bringing PPPOE interface $4 down" ; \
-                sudo /sbin/poff $4 ; \
+                sudo /sbin/poff "$4" ; \
         else \
                 echo "PPPOE interface $4 is already down" ; \
         fi
