@@ -3,13 +3,17 @@
 #
 # This parameter sets the time in seconds after which an idle
 # connection will be closed. Disconnection of idle connections will not
-# be performed if this parameter is not set, or if the value of this
-# parameter is set to 0.
+# be performed if this parameter is not set.
 #
 
 type: u32
 
-help: Amount of time in seconds to wait before disconnecting an idle session.  Never disconnect if set to zero
+help: Delay before disconnecting idle session
+
+comp_help:Possible completions:
+  <u32>\t\tAmount of time in seconds to wait before disconnecting an
+\t\tidle session.  This parameter is used only when
+\t\t"connect-on-demand" mode is enabled.
 
 syntax:expression: ($VAR(@) >= 0) ; "Idle timeout can not be negative"
 

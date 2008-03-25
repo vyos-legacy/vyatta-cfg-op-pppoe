@@ -14,9 +14,15 @@
 
 type: txt
 
-help: Enable or disable automatic use of name server entries from peer
+help: Enable/disable use of name server entries from peer
+
+comp_help:Possible completions:
+  auto\t\tUse name server entries provided by peer
+  none\t\tDo not use name server entries provided by peer
 
 syntax:expression: $VAR(@) in "auto","none" ; "Must be either \"auto\" or \"none\""
+
+default: "auto"
 
 update:	sudo sed -i '/^usepeerdns/d' /etc/ppp/peers/pppoe$VAR(../@)
 	if [ "$VAR(@)" = "auto" ]; then
