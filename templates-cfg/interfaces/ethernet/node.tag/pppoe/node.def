@@ -65,5 +65,6 @@ delete:	sudo rm -f /etc/ppp/peers/pppoe$VAR(@)
 #
 end:	sudo poff pppoe$VAR(@) | logger -p debug -t pppoe$VAR(@)-template
 	if [ -e /etc/ppp/peers/pppoe$VAR(@) ]; then
-                ( sudo /usr/sbin/pppd call pppoe$VAR(@) > /tmp/pppoe$VAR(@).log 2>&1 & )
+                ( umask 0; sudo /usr/sbin/pppd call pppoe$VAR(@) > \
+		  	/tmp/pppoe$VAR(@).log 2>&1 & )
 	fi

@@ -1,8 +1,14 @@
 help: Bring PPPOE interface up
 
-run:    if [ -d "/sys/class/net/$4" ]; then \
-                echo "PPPOE Interface $4 is already up." ; \
-        else \
-                echo "Bringing PPPOE interface $4 up." ; \
-                ( sudo /usr/sbin/pppd call "$4" > "/tmp/${4}.log" 2>&1 & ) ; \
-        fi
+run:	
+	if [ ! -e /etc/ppp/peers/${4} ]; then
+		echo "Invalid interface: $4"
+	elif [ -d /sys/class/net/${4} ]; then
+		echo "PPPOE Interface $4 is already up."
+	elif [ ! -z "`ps -C pppd -f | grep $4 `" ]; then
+		echo "PPPOE Interface $4 is in the process of coming up."
+	else
+		echo "Bringing PPPOE interface $4 up..."
+		( umask 0; sudo /usr/sbin/pppd call $4 > \
+			/tmp/${4}.log 2>&1 & )
+	fi
