@@ -4,8 +4,13 @@ allowed: local -a array ;
          array=( /etc/ppp/peers/pppoe* ) ;
          echo  -n ${array[@]##*/}
 
-run:     if [ -e /sys/class/net/$4 ]; then \
-                ${vyatta_bindir}/vyatta-show-interfaces pppoe $4 ; \
-         else \
-                echo ${4}: Link down ; \
-         fi
+run:     
+        if [ ! -e /etc/ppp/peers/${4} ]; then
+                echo ${4}: Invalid interface
+	elif [ -e /sys/class/net/$4 ]; then
+                ${vyatta_bindir}/vyatta-show-interfaces pppoe $4
+	elif [ ! -z "`ps -C pppd -f | grep $4 `" ]; then
+                echo ${4}: Coming up
+        else
+		echo ${4}: Link down
+        fi
