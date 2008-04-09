@@ -1,4 +1,4 @@
-help: Bring PPPOE interface up
+help: Bring specified PPPOE interface up
 
 run:	
 	if [ ! -e /etc/ppp/peers/${4} ]; then

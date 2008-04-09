@@ -8,7 +8,7 @@
 
 type: u32
 
-help: Delay before disconnecting idle session
+help: Set delay before disconnecting idle session
 
 comp_help:Possible completions:
   <u32>\t\tAmount of time in seconds to wait before disconnecting an

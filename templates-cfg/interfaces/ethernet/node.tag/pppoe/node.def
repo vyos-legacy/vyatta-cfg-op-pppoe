@@ -13,7 +13,7 @@ tag:
 
 type: u32
 
-help: PPPOE unit number.
+help: Set Point-to-Point Protocol over Ethernet (PPPOE) unit number
 
 syntax:expression:  ((($VAR(@) >= 0) && ($VAR(@) <= 15)) ; \
         "Only unit number must be between 0 and 15") && \
