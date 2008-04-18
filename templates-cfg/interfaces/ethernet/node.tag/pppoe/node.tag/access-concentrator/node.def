@@ -7,7 +7,7 @@
 
 type: txt
 
-help: Restrict connections to this access concentrator only
+help: Set access concentrator to restrict connections to this only
 
 comp_help:Possible completions:
   <txt>\t\tAccess concentrator name.  System will connect only

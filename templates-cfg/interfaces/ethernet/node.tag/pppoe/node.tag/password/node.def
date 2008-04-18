@@ -9,7 +9,7 @@
 
 type: txt
 
-help: For authenticating local machine to PPPOE server
+help: Set password for authenticating local machine to PPPOE server
 
 comp_help:Possible completions:
   <txt>\t\tPassword to use in authenticating the local machine

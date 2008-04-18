@@ -8,7 +8,7 @@
 
 type: txt
 
-help: Connect only to access concentrators with this service name
+help: Set service name to connect only to access concentrators with this name
 
 comp_help:Possible completions:
   <txt>\t\tName of service advertised by access concentrator.

@@ -1,4 +1,4 @@
-help: show PPPOE interface information
+help: show Point-to-Point Protocol over Ethernet (PPPOE) interface information
 
 run:
 	for i in /etc/ppp/peers/pppoe* ; do

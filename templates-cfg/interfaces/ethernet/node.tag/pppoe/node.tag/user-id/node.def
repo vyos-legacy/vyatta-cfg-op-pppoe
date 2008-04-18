@@ -9,7 +9,7 @@
 
 type: txt
 
-help: Name for authenticating local machine to PPPOE server
+help: Set name for authenticating local machine to PPPOE server
 
 comp_help:Possible completions:
   <txt>\t\tName that local machine should use in authenticating
