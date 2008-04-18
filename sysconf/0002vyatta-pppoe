@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #
-# Script to re-name ppp interface being used by pppoe to have
-# a form: pppoe<unit>.
+# Script to re-name ppp interface being used by pppoe or pppoa to have
+# a form: pppoe<unit> or pppoa<unit>.
 #
 # The name of the current ppp interface is passed in as argument 1.  The full
 # name that we are to change it to is passed in as argument 6.  We don't
@@ -14,12 +14,12 @@ NEW_IFNAME=$6
 
 #
 # The ppp daemon executes this script for all ppp interfaces, even those
-# unrelated to pppoe.  We want to change the names only of
-# interface being used by pppoe.
+# unrelated to pppoe or pppoa.  We want to change the names only of
+# interface being used by pppoe or pppoa.
 #
 IFPREFIX=`echo $NEW_IFNAME | sed s/[0-9]//g`
-if [ "$IFPREFIX" != "pppoe" ]; then
-    # its not a pppoe interface
+if [ "$IFPREFIX" != "pppoe" -a "$IFPREFIX" != "pppoa" ]; then
+    # its not a pppoe or pppoa interface
     exit 0;
 fi
 
@@ -30,22 +30,22 @@ LOCAL_ADDR=`ip address show dev $OLD_IFNAME | grep inet | awk '{ print $2 }'`
 REMOTE_ADDR=`ip address show dev $OLD_IFNAME | grep inet | awk '{ print $4 }'`
 
 # Re-name the interface.  Log all errors to syslog.
-logger -p debug -t "vyatta pppoe"  Re-naming $OLD_IFNAME to $NEW_IFNAME
+logger -p debug -t "vyatta pppoe/pppoa"  Re-naming $OLD_IFNAME to $NEW_IFNAME
 ip link set dev $OLD_IFNAME down | \
-    logger -p debug -t "vyatta pppoe"
+    logger -p debug -t "vyatta pppoe/pppoa"
 ip addr del local $LOCAL_ADDR peer $REMOTE_ADDR dev $OLD_IFNAME | \
-    logger -p debug -t "vyatta pppoe"
+    logger -p debug -t "vyatta pppoe/pppoa"
 ip link set dev $OLD_IFNAME name $NEW_IFNAME | \
-    logger -p debug -t "vyatta pppoe"
+    logger -p debug -t "vyatta pppoe/pppoa"
 ip addr add local $LOCAL_ADDR peer $REMOTE_ADDR dev $NEW_IFNAME | \
-    logger -p debug -t "vyatta pppoe"
+    logger -p debug -t "vyatta pppoe/pppoa"
 ip link set dev $NEW_IFNAME up | \
-    logger -p debug -t "vyatta pppoe"
+    logger -p debug -t "vyatta pppoe/pppoa"
 
 # Restore the automatic default route, if one existed
 if [ ! -z "$DEFROUTE" ]; then
     ip route add to default dev $NEW_IFNAME | \
-        logger -p debug -t "vyatta pppoe"
+        logger -p debug -t "vyatta pppoe/pppoa"
 fi
 
 
