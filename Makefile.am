@@ -5,8 +5,6 @@ libudevdir	 = /lib/udev
 etcudevdir	 = /etc/udev
 initddir	 = /etc/init.d
 
-bin_SCRIPTS =
-sbin_SCRIPTS =
 sysconf_DATA =
 
 # bin_SCRIPTS += scripts/progress-indicator
