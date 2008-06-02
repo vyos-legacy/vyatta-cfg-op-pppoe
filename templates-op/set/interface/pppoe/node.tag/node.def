@@ -1,6 +1,0 @@
-help: Set PPPOE interface name
-
-allowed: local -a array ;
-         array=( /etc/ppp/peers/pppoe* ) ;
-         echo  -n ${array[@]##*/}
-
