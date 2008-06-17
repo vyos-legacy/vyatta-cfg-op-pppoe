@@ -1,3 +1,27 @@
+vyatta-cfg-op-pppoe (0.10) unstable; urgency=low
+
+	  3.1.0
+  [ Mark O'Brien ]
+
+
+  [ Bob Gilligan ]
+  * Bugfix: 3202
+
+  [ rbalocca ]
+  * Remove empty dirs from the debian package
+  * Convert to our method of changelog creation
+
+  [ Bob Gilligan ]
+  * Change script that re-names pppoe interfaces when they come up to do
+    the
+
+  [ Mohit Mehta ]
+  * Fix Bug 3069 Help strings should be standardized
+
+  [ Mark O'Brien ]
+
+ -- Mark O'Brien <mobrien@firebolt.vyatta.com>  Tue, 17 Jun 2008 09:26:07 -0700
+
 vyatta-cfg-op-pppoe (0.9) unstable; urgency=low
 
   3.0.5
