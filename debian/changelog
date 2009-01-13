@@ -1,3 +1,9 @@
+vyatta-cfg-op-pppoe (0.11.0+islavista1) unstable; urgency=low
+
+  * UNRELEASED
+
+ -- An-Cheng Huang <ancheng@vyatta.com>  Mon, 12 Jan 2009 16:36:12 -0800
+
 vyatta-cfg-op-pppoe (0.11) unstable; urgency=low
 
 	  3.1.2
