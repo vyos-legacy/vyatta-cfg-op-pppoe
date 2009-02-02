@@ -32,7 +32,7 @@ syntax:expression:  ((($VAR(@) >= 0) && ($VAR(@) <= 15)) ; \
 update:	sudo rm -f /etc/ppp/peers/pppoe$VAR(@)
 	sudo cp /opt/vyatta/etc/pppoe-provider-template \
 	   /etc/ppp/peers/pppoe$VAR(@) 
-	sudo sh -c "echo pty \\\"/usr/sbin/pppoe -m 1412 -I $VAR(../@)\\\" >> \
+	sudo sh -c "echo pty \\\"/usr/sbin/pppoe -m 1412 -I $VAR(../../@).$VAR(../@)\\\" >> \
 	     /etc/ppp/peers/pppoe$VAR(@)"
 	sudo sh -c "echo persist >> /etc/ppp/peers/pppoe$VAR(@)"
 	sudo sh -c "echo mtu 1492  >> /etc/ppp/peers/pppoe$VAR(@)"
