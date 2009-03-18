@@ -1,3 +1,10 @@
+vyatta-cfg-op-pppoe (0.11.3) unstable; urgency=low
+
+  * Bugfix 4065:  Place quotes around user and password parameters in
+    PPP config file.
+
+ -- Bob Gilligan <gilligan@vyatta.com>  Wed, 18 Mar 2009 10:38:49 -0700
+
 vyatta-cfg-op-pppoe (0.11.2) unstable; urgency=low
 
   * Bugfix 4052: Support PPPOE on ethernet VIFs.
