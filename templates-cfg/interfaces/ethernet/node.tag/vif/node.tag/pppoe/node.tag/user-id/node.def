@@ -17,6 +17,6 @@ comp_help:Possible completions:
 \t\tthe password parameter
 
 update:	sudo sed -i '/^user/d' /etc/ppp/peers/pppoe$VAR(../@)
-	sudo sh -c "echo user $VAR(@) >> /etc/ppp/peers/pppoe$VAR(../@)"
+	sudo sh -c "echo user \\\"$VAR(@)\\\" >> /etc/ppp/peers/pppoe$VAR(../@)"
 
 delete:	sudo sed -i '/^user/d' /etc/ppp/peers/pppoe$VAR(../@)

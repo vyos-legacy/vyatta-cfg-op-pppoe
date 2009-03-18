@@ -17,6 +17,6 @@ comp_help:Possible completions:
 \t\tuser-id parameter.
 
 update:	sudo sed -i '/^password/d' /etc/ppp/peers/pppoe$VAR(../@)
-        sudo sh -c "echo password $VAR(@) >> /etc/ppp/peers/pppoe$VAR(../@)"
+        sudo sh -c "echo password \\\"$VAR(@)\\\" >> /etc/ppp/peers/pppoe$VAR(../@)"
 
 delete:	sudo sed -i '/^password/d' /etc/ppp/peers/pppoe$VAR(../@)
