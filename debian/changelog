@@ -1,3 +1,9 @@
+vyatta-cfg-op-pppoe (0.11.4) unstable; urgency=low
+
+  * Bugfix 3861:  Add logging for PPPOE and PPPOA interfaces.
+
+ -- Bob Gilligan <gilligan@vyatta.com>  Wed, 18 Mar 2009 17:44:27 -0700
+
 vyatta-cfg-op-pppoe (0.11.3) unstable; urgency=low
 
   * Bugfix 4065:  Place quotes around user and password parameters in
