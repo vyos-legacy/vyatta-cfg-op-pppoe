@@ -31,8 +31,7 @@ syntax:expression:  ((($VAR(@) >= 0) && ($VAR(@) <= 15)) ; \
 #
 create:	
 	ifname=pppoe$VAR(@)
-	logfile=/var/log/vyatta/ppp_$ifname
-	sudo rm -f $logfile
+	logfile=/var/log/vyatta/ppp_${ifname}.log
 	sudo touch $logfile
 	sudo chgrp adm $logfile
 	sudo chmod 664 $logfile
@@ -58,7 +57,7 @@ create:
 # 
 delete:	
 	ifname=pppoe$VAR(@)
-	logfile=/var/log/vyatta/ppp_$ifname
+	logfile=/var/log/vyatta/ppp_${ifname}.log
 	echo "`date`: PPP interface $ifname deleted" >> $logfile
 	sudo rm -f /etc/ppp/peers/pppoe$VAR(@)
 
@@ -76,7 +75,7 @@ delete:
 #
 end:	
 	ifname=pppoe$VAR(@)
-	logfile=/var/log/vyatta/ppp_$ifname
+	logfile=/var/log/vyatta/ppp_${ifname}.log
 	echo "`date`: Stopping PPP daemon for $ifname" >> $logfile
 
 	sudo poff pppoe$VAR(@) | logger -p debug -t pppoe$VAR(@)-template
