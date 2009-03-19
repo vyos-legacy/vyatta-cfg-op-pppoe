@@ -1,3 +1,9 @@
+vyatta-cfg-op-pppoe (0.11.5) unstable; urgency=low
+
+  * Change PPP logfile name so that it can be easily rotated.
+
+ -- Bob Gilligan <gilligan@vyatta.com>  Thu, 19 Mar 2009 14:20:26 -0700
+
 vyatta-cfg-op-pppoe (0.11.4) unstable; urgency=low
 
   * Bugfix 3861:  Add logging for PPPOE and PPPOA interfaces.
