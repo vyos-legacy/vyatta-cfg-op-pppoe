@@ -1,0 +1,7 @@
+
+help: Watch PPP logs
+
+run: tail --follow=name /var/log/vyatta/ppp_$4
+
+
+	

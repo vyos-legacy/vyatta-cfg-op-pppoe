@@ -1,0 +1,9 @@
+
+
+help: Show PPP logs
+
+run:
+	ifname=$4
+	logfile=/var/log/vyatta/ppp_$ifname
+
+	cat $logfile	
