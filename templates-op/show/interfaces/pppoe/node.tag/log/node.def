@@ -4,6 +4,6 @@ help: Show PPP logs
 
 run:
 	ifname=$4
-	logfile=/var/log/vyatta/ppp_$ifname
+	logfile=/var/log/vyatta/ppp_${ifname}.log
 
 	cat $logfile	
