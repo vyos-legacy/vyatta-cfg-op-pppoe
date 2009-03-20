@@ -1,3 +1,9 @@
+vyatta-cfg-op-pppoe (0.11.6) unstable; urgency=low
+
+  * Change the log file name.
+
+ -- Bob Gilligan <gilligan@vyatta.com>  Thu, 19 Mar 2009 17:45:56 -0700
+
 vyatta-cfg-op-pppoe (0.11.5) unstable; urgency=low
 
   * Change PPP logfile name so that it can be easily rotated.
