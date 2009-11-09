@@ -1,3 +1,9 @@
+vyatta-cfg-op-pppoe (0.11.8) unstable; urgency=low
+
+  * depends on vyatta-op (for generic interface op commands).
+
+ -- An-Cheng Huang <ancheng@vyatta.com>  Mon, 09 Nov 2009 11:51:15 -0800
+
 vyatta-cfg-op-pppoe (0.11.7) unstable; urgency=low
 
   * UNRELEASED
