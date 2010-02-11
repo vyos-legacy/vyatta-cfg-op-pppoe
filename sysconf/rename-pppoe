@@ -8,11 +8,13 @@
 # name that we are to change it to is passed in as argument 6.  We don't
 # use the rest of the arguments.
 #
+# We do this before device is brought up so that later scripts
+# can see the correct name, and the interface doesn't have to be
+# bounced
 
 OLD_IFNAME=$1
 NEW_IFNAME=$6
 
-#
 # The ppp daemon executes this script for all ppp interfaces, even those
 # unrelated to pppoe or pppoa.  We want to change the names only of
 # interface being used by pppoe or pppoa.
@@ -23,29 +25,7 @@ if [ "$IFPREFIX" != "pppoe" -a "$IFPREFIX" != "pppoa" ]; then
     exit 0;
 fi
 
-DEFROUTE=`netstat -nra | grep ^0.0.0.0 | grep $OLD_IFNAME`
-
-LOCAL_ADDR=`ip address show dev $OLD_IFNAME | grep inet | awk '{ print $2 }'`
-
-REMOTE_ADDR=`ip address show dev $OLD_IFNAME | grep inet | awk '{ print $4 }'`
-
 # Re-name the interface.  Log all errors to syslog.
 logger -p debug -t "vyatta pppoe/pppoa"  Re-naming $OLD_IFNAME to $NEW_IFNAME
-ip link set dev $OLD_IFNAME down | \
-    logger -p debug -t "vyatta pppoe/pppoa"
-ip addr del local $LOCAL_ADDR peer $REMOTE_ADDR dev $OLD_IFNAME | \
-    logger -p debug -t "vyatta pppoe/pppoa"
 ip link set dev $OLD_IFNAME name $NEW_IFNAME | \
     logger -p debug -t "vyatta pppoe/pppoa"
-ip addr add local $LOCAL_ADDR peer $REMOTE_ADDR dev $NEW_IFNAME | \
-    logger -p debug -t "vyatta pppoe/pppoa"
-ip link set dev $NEW_IFNAME up | \
-    logger -p debug -t "vyatta pppoe/pppoa"
-
-# Restore the automatic default route, if one existed
-if [ ! -z "$DEFROUTE" ]; then
-    ip route add to default dev $NEW_IFNAME | \
-        logger -p debug -t "vyatta pppoe/pppoa"
-fi
-
-

@@ -30,9 +30,9 @@ install-exec-hook:
 	cd templates-cfg; $(cpiop) $(DESTDIR)$(cfgdir)
 	mkdir -p $(DESTDIR)$(opdir)
 	cd templates-op; $(cpiop) $(DESTDIR)$(opdir)
-	mkdir -p $(DESTDIR)/etc/ppp/ip-up.d
-	cp sysconf/0002vyatta-pppoe $(DESTDIR)/etc/ppp/ip-up.d
-	chmod 755 $(DESTDIR)/etc/ppp/ip-up.d/0002vyatta-pppoe
+	mkdir -p $(DESTDIR)/etc/ppp/ip-pre-up.d
+	cp sysconf/rename-pppoe $(DESTDIR)/etc/ppp/ip-pre-up.d/0002rename-pppoe
+	chmod 755 $(DESTDIR)/etc/ppp/ip-pre-up.d/0002rename-pppoe
 	mkdir -p $(DESTDIR)/opt/vyatta/etc
 	cp sysconf/pppoe-provider-template $(DESTDIR)/opt/vyatta/etc
 	mkdir -p $(DESTDIR)/etc
