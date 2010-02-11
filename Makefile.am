@@ -7,21 +7,6 @@ initddir	 = /etc/init.d
 
 sysconf_DATA =
 
-# bin_SCRIPTS += scripts/progress-indicator
-# sbin_SCRIPTS += scripts/rl-system.init
-
-# noinst_DATA = test_bootfile
-
-# share_perl5_DATA = scripts/keepalived/VyattaKeepalived.pm
-
-# sysconf_DATA += sysconf/logrotate_messages
-
-
-# libudev_SCRIPTS	 = scripts/vyatta_net_name
-# etcudev_DATA	 = sysconf/vyatta-net.rules
-
-# initd_SCRIPTS	 = etc/init.d/vyatta-udev
-
 cpiop = find  . ! -regex '\(.*~\|.*\.bak\|.*\.swp\|.*\#.*\#\)' -print0 | \
   cpio -0pd
 
