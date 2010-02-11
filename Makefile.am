@@ -1,9 +1,6 @@
 cfgdir		 = $(datadir)/vyatta-cfg/templates
 opdir		 = $(datadir)/vyatta-op/templates
 share_perl5dir	 = $(datarootdir)/perl5
-libudevdir	 = /lib/udev
-etcudevdir	 = /etc/udev
-initddir	 = /etc/init.d
 
 sysconf_DATA =
 
@@ -20,8 +17,3 @@ install-exec-hook:
 	chmod 755 $(DESTDIR)/etc/ppp/ip-pre-up.d/0002rename-pppoe
 	mkdir -p $(DESTDIR)/opt/vyatta/etc
 	cp sysconf/pppoe-provider-template $(DESTDIR)/opt/vyatta/etc
-	mkdir -p $(DESTDIR)/etc
-	cd etc ; $(cpiop) $(DESTDIR)/etc
-
-
-

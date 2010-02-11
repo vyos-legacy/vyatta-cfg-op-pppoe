@@ -22,7 +22,6 @@ AC_ARG_ENABLE([nostrip],
 
 AC_CONFIG_FILES(
   [Makefile]
-  [debian/vyatta-cfg-op-pppoe.postinst]
   )
 
 AC_SUBST(NOSTRIP)

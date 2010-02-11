@@ -83,6 +83,7 @@ binary-indep: build install
 	dh_installchangelogs ChangeLog
 	dh_installdocs
 	dh_install
+	dh_installinit --name=vyatta-pppoe
 	dh_installdebconf	
 	dh_link
 	dh_strip
