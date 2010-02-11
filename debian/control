@@ -19,4 +19,4 @@ Depends: sed (>= 4.1.5),
  pppoe
 Suggests: util-linux (>= 2.13-5),
 Description: Vyatta config and op mode templates for PPPOE
- Vyatta config and op mode templates for PPPOE
+ This package contains config and op mode templates for PPP over Ethernet
