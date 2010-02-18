@@ -1,3 +1,9 @@
+vyatta-cfg-op-pppoe (0.11.9+kenwood1) unstable; urgency=low
+
+  * UNRELEASED
+
+ -- An-Cheng Huang <ancheng@vyatta.com>  Wed, 17 Feb 2010 16:06:26 -0800
+
 vyatta-cfg-op-pppoe (0.11.9) unstable; urgency=low
 
   * Move rename from ip-up.d to ip-pre-up.d
