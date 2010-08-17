@@ -8,12 +8,9 @@
 
 type: u32
 
-help: Set delay before disconnecting idle session
+help: Delay (in seconds) before disconnecting idle session
 
-comp_help:Possible completions:
-  <u32>\t\tAmount of time in seconds to wait before disconnecting an
-\t\tidle session.  This parameter is used only when
-\t\t"connect-on-demand" mode is enabled.
+comp_help: This parameter is used only when "connect-on-demand" mode is enabled.
 
 syntax:expression: ($VAR(@) >= 0) ; "Idle timeout can not be negative"
 

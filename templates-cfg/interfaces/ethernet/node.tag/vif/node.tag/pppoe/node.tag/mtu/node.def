@@ -12,9 +12,7 @@ help: Set the IP layer Maximum Transmission Unit (MTU), in bytes
 
 syntax:expression: (($VAR(@) > 68) && ($VAR(@) <= 1492)) ; "MTU must be between 68 and 1492"
 
-comp_help:Possible completions:
-  <u32>\t\tIP layer Maximum Transmission Unit (MTU), in bytes.
-\t\tMust be between 68 and 1492.  Default is 1492.
+val_help: u32:68-1492; IP layer Maximum Transmission Unit (MTU) in bytes
 
 default: 1492
 

@@ -8,12 +8,7 @@
 
 type: txt
 
-help: Set service name to connect only to access concentrators with this name
-
-comp_help:Possible completions:
-  <txt>\t\tName of service advertised by access concentrator.
-\t\tSystem will only connect to an access concentrator that is
-\t\tadvertising this service name.
+help: Service name (only connect to access concentrators advertising this)
 
 syntax:expression: pattern $VAR(@) "^[a-zA-Z0-9]+$" ; "Service name must be composed of uppper and lower case letters or numbers only"
 

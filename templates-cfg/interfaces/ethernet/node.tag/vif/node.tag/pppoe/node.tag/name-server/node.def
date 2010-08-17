@@ -16,9 +16,8 @@ type: txt
 
 help: Enable/disable use of name server entries from peer
 
-comp_help:Possible completions:
-  auto\t\tUse name server entries provided by peer
-  none\t\tDo not use name server entries provided by peer
+val_help: auto; Use name server entries provided by peer
+val_help: none; Do not use name server entries provided by peer
 
 syntax:expression: $VAR(@) in "auto","none" ; "Must be either \"auto\" or \"none\""
 

@@ -16,9 +16,8 @@ type: txt
 
 help: Enable/disable default route to peer when link comes up
 
-comp_help:Possible completions:
-  auto\t\tInstall default route when link comes up
-  none\t\tDon't install default route when link comes up
+val_help: auto; Install default route when link comes up
+val_help: none; Don't install default route when link comes up
 
 syntax:expression: $VAR(@) in "auto","none" ; "Must be either auto or none"
 
