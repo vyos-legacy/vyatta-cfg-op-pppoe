@@ -19,7 +19,7 @@
 # without traffic.  Can only be used if remote-address is also set.
 #
 
-help: Set automatic establishment of  PPPOE connection when traffic is sent
+help: Automatic establishment of PPPOE connection when traffic is sent
 
 update:	sudo sed -i '/^demand/d' /etc/ppp/peers/pppoe$VAR(../@)
 	sudo sed -i '/^persist/d' /etc/ppp/peers/pppoe$VAR(../@)
