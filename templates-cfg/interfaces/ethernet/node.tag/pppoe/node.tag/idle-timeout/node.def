@@ -10,10 +10,6 @@ type: u32
 
 help: Delay (in seconds) before disconnecting idle session
 
-comp_help: This parameter is used only when "connect-on-demand" mode is enabled.
-
-syntax:expression: ($VAR(@) >= 0) ; "Idle timeout can not be negative"
-
 update:	sudo sed -i '/^idle/d' /etc/ppp/peers/pppoe$VAR(../@)
         sudo sh -c "echo idle $VAR(@) >> /etc/ppp/peers/pppoe$VAR(../@)"
 
