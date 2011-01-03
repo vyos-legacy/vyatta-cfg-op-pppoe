@@ -6,7 +6,7 @@
 
 type: ipv4
 
-help: Set IPv4 address of the local end of the PPPOE link
+help: IPv4 address of the local end of the PPPOE link
 
 update:	sudo sed -i '/^[0-9:]/d' /etc/ppp/peers/pppoe$VAR(../@)
         sudo sh -c "echo $VAR(@):$VAR(../remote-address/@) >> /etc/ppp/peers/pppoe$VAR(../@)"
