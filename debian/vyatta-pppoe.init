@@ -13,7 +13,7 @@
 
 . /lib/lsb/init-functions
 
-# Remove tacplus early in boot process
+# Remove ppoe config files early in boot process
 # if it is used, then re-enabled later in boot
 case "$1" in
   start)
