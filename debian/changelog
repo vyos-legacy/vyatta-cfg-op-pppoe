@@ -1,3 +1,14 @@
+vyatta-cfg-op-pppoe (0.11.15) unstable; urgency=low
+
+  [ Stephen Hemminger ]
+  * Cleanup idle-timeout configuration
+  * Remove 'Set' from help text
+  * Remove bogus reference in comment
+
+  [ Deepti Kulkarni ]
+
+ -- Deepti Kulkarni <deepti@vyatta.com>  Thu, 07 Jul 2011 20:55:33 -0700
+
 vyatta-cfg-op-pppoe (0.11.14) unstable; urgency=low
 
   * new branch
