@@ -1,3 +1,9 @@
+vyatta-cfg-op-pppoe (0.11.16) unstable; urgency=low
+
+  * Bugfix 7420: Fix brackgrounding of pppd process.
+
+ -- Bob Gilligan <gilligan@vyatta.com>  Mon, 15 Aug 2011 14:57:11 -0700
+
 vyatta-cfg-op-pppoe (0.11.15) unstable; urgency=low
 
   [ Stephen Hemminger ]
