@@ -83,6 +83,6 @@ end:
 	sudo poff pppoe$VAR(@) | logger -p debug -t pppoe$VAR(@)-template
 	if [ -e /etc/ppp/peers/pppoe$VAR(@) ]; then
 		echo "`date`: Starting PPP daemon for $ifname" >> $logfile
-                ( umask 0; sudo /usr/sbin/pppd call pppoe$VAR(@) > \
-		  	/tmp/pppoe$VAR(@).log 2>&1 & )
+                ( umask 0; sudo setsid sh -c 'nohup /usr/sbin/pppd \
+			   call pppoe$VAR(@) > /tmp/pppoe$VAR(@).log 2>&1 &' )
 	fi
