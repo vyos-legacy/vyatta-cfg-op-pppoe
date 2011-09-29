@@ -42,8 +42,8 @@ create:
 	sudo rm -f /etc/ppp/peers/pppoe$VAR(@)
 	sudo cp /opt/vyatta/etc/pppoe-provider-template \
 	   /etc/ppp/peers/pppoe$VAR(@) 
-	sudo sh -c "echo pty \\\"/usr/sbin/pppoe -m 1412 -I $VAR(../@)\\\" >> \
-	     /etc/ppp/peers/pppoe$VAR(@)"
+        sudo sh -c "echo plugin rp-pppoe.so >> /etc/ppp/peers/pppoe$VAR(@)" 
+        sudo sh -c "echo $VAR(../@) >> /etc/ppp/peers/pppoe$VAR(@)"
 	sudo sh -c "echo persist >> /etc/ppp/peers/pppoe$VAR(@)"
 	sudo sh -c "echo mtu 1492  >> /etc/ppp/peers/pppoe$VAR(@)"
 	sudo sh -c "echo mru 1492  >> /etc/ppp/peers/pppoe$VAR(@)"
