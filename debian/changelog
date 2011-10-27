@@ -1,3 +1,12 @@
+vyatta-cfg-op-pppoe (0.11.17) unstable; urgency=low
+
+  * Remove capture from show
+  * Add pppoe interface monitoring
+  * Fix filter completion
+  * remove run from 'montior interface pppoe [name]' command
+
+ -- John Southworth <john.southworth@vyatta.com>  Thu, 27 Oct 2011 17:09:50 -0500
+
 vyatta-cfg-op-pppoe (0.11.16) unstable; urgency=low
 
   * Bugfix 7420: Fix brackgrounding of pppd process.
