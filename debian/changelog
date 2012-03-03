@@ -1,3 +1,9 @@
+vyatta-cfg-op-pppoe (0.11.17+oxnard1) unstable; urgency=low
+
+  * new branch
+
+ -- Deepti Kulkarni <deepti@vyatta.com>  Sat, 03 Mar 2012 02:22:48 -0800
+
 vyatta-cfg-op-pppoe (0.11.17) unstable; urgency=low
 
   * Remove capture from show
