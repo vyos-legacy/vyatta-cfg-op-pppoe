@@ -1,3 +1,11 @@
+vyatta-cfg-op-pppoe (0.11.19) unstable; urgency=low
+
+  * kernel mode pppoe
+  * leave old pty line intact for qos parsing, until better solution is
+    found
+
+ -- John Southworth <john.southworth@vyatta.com>  Thu, 22 Mar 2012 14:05:54 -0700
+
 vyatta-cfg-op-pppoe (0.11.18) unstable; urgency=low
 
   * new branch
