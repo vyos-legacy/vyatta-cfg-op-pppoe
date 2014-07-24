@@ -3,14 +3,14 @@
 # parameter
 # 
 # 
-# This parameter has two possible values: "auto" and "none". If the
-# parameter value is "auto", or if the parameter itself does not
-# exist, then ppp will automatically add a default route pointing to
-# the endpoint of the link when the link comes up.  The default route
-# will only be added if no other default route already exists in the
-# system.  If the parameter value is "none", no default route will be
-# added.
-# 
+# This parameter has three possible values: "auto", "none" and 
+# "force". If the parameter value is "auto", or if the parameter 
+# itself does not exist, then ppp will automatically add a default 
+# route pointing to the endpoint of the link when the link comes up.  
+# The default route will only be added if no other default route 
+# already exists in the system. If the parameter value is "none", no 
+# default route will be added. If the parameter is set to "force", 
+# pre-existing default routes will be replaced. 
 
 type: txt
 
@@ -18,8 +18,9 @@ help: Enable/disable default route to peer when link comes up
 
 val_help: auto; Install default route when link comes up
 val_help: none; Don't install default route when link comes up
+val_help: force; Install default route and replace pre-existing when link comes up
 
-syntax:expression: $VAR(@) in "auto","none" ; "Must be either auto or none"
+syntax:expression: $VAR(@) in "auto","none","force" ; "Must be either auto, none or force."
 
 default: "auto"
 
@@ -27,7 +28,11 @@ update:	sudo sed -i '/^defaultroute/d' /etc/ppp/peers/pppoe$VAR(../@)
 	if [ "$VAR(@)" = "auto" ]; then
 	        sudo sh -c "echo defaultroute >> /etc/ppp/peers/pppoe$VAR(../@)"
 	fi
-
+	if [ "$VAR(@)" = "force" ]; then
+			sudo sh -c "echo defaultroute >> /etc/ppp/peers/pppoe$VAR(../@)"
+			sudo sh -c "echo replacedefaultroute >> /etc/ppp/peers/pppoe$VAR(../@)"
+	fi
+#
 #
 # If this parameter is deleted, behave as if it were set to "auto"
 #
