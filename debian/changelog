@@ -1,3 +1,16 @@
+vyatta-cfg-op-pppoe (0.11.20+vyos1+helium2) unstable; urgency=low
+
+  [ Kim Hagen ]
+  * Add pppoe to QinQ vif.
+  * Set separate virual interface for QinQ.
+
+  [ Ewald van Geffen ]
+  * Adds replacedefaultroute to ppp options. Backport from EdgeOS.
+
+  [ Daniil Baturin ]
+
+ -- Daniil Baturin <daniil@baturin.org>  Sat, 26 Jul 2014 20:01:21 +0200
+
 vyatta-cfg-op-pppoe (0.11.20+vyos1+helium1) unstable; urgency=low
 
   * New branch
