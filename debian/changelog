@@ -1,3 +1,9 @@
+vyatta-cfg-op-pppoe (0.11.20+vyos1+helium4) unstable; urgency=low
+
+  * Add the template for 'disable' option.
+
+ -- Daniil Baturin <daniil@baturin.org>  Tue, 29 Jul 2014 03:02:15 +0200
+
 vyatta-cfg-op-pppoe (0.11.20+vyos1+helium3) unstable; urgency=low
 
   * Bug #12: Provide a config parameter to administratively disable a
