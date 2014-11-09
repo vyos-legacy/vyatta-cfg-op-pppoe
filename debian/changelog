@@ -1,3 +1,15 @@
+vyatta-cfg-op-pppoe (0.11.21+vyos2+lithium1) unstable; urgency=low
+
+  * New branch
+
+ -- Daniil Baturin <dmbaturin@squeeze32devel.multi.eu>  Sun, 09 Nov 2014 15:48:46 +0100
+
+vyatta-cfg-op-pppoe (0.11.21+vyos2+lithium0) unstable; urgency=low
+
+  * New branch
+
+ -- Daniil Baturin <daniil@baturin.org>  Sun, 09 Nov 2014 15:48:05 +0100
+
 vyatta-cfg-op-pppoe (0.11.20+vyos1+helium4) unstable; urgency=low
 
   * Add the template for 'disable' option.
