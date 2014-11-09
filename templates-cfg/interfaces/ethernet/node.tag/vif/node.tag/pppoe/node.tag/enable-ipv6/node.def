@@ -1,0 +1,16 @@
+#
+# Configuration template for the .../pppoe/node.tag/enable-ipv6 parameter
+# 
+# 
+# This parameter has no "value" associated with it. If the parameter
+# exists, then ipv6 is enabled in pppd options. 
+#
+# If the parameter does not exist, then ipv6 will
+# be disabled in pppd.
+
+help: Activate IPv6 support on this connection 
+
+update:	sudo sed -i '/^+ipv6/d' /etc/ppp/peers/pppoe$VAR(../@)
+        sudo sh -c "echo +ipv6 >> /etc/ppp/peers/pppoe$VAR(../@)"
+
+delete:	sudo sed -i '/^+ipv6/d' /etc/ppp/peers/pppoe$VAR(../@)
