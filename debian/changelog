@@ -1,3 +1,9 @@
+vyatta-cfg-op-pppoe (0.11.21+vyos2+lithium3) unstable; urgency=low
+
+  * Update maintainer address
+
+ -- Alex Harpin <development@landsofshadow.co.uk>  Thu, 25 Dec 2014 14:15:37 +0000
+ 
 vyatta-cfg-op-pppoe (0.11.21+vyos2+lithium2) unstable; urgency=low
 
   [ Benjamin Beret ]
