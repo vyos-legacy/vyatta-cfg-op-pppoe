@@ -1,3 +1,9 @@
+vyatta-cfg-op-pppoe (0.11.21+vyos2+lithium4) unstable; urgency=low
+
+  * vyatta-cfg-op-pppoe: update dh_gencontrol with new development flag
+
+ -- Alex Harpin <development@landsofshadow.co.uk>  Tue, 16 Jun 2015 19:18:27 +0100
+ 
 vyatta-cfg-op-pppoe (0.11.21+vyos2+lithium3) unstable; urgency=low
 
   * Update maintainer address
