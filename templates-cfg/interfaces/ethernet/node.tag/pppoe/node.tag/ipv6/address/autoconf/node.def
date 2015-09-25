@@ -1,0 +1,26 @@
+#
+# This is a valueless node, hence has no type associated with it.
+#
+
+help: Enable acquisition of IPv6 address using stateless autoconfig (SLAAC)
+
+update:
+	ifname=pppoe$VAR(../../../@)
+	script=/etc/ppp/ipv6-up.d/50-vyos-$ifname-autoconf
+	sudo cp /opt/vyatta/etc/ppp/templates/pppoe-autoconf.template $script
+	sudo sh -c "sed -i s:INTERFACE:$ifname:g $script"
+	sudo sh -c "chmod +x $script"
+	forwarding=`cat /proc/sys/net/ipv6/conf/pppoe$VAR(../../../@)/forwarding`
+	if [ $forwarding = 1 ]; then
+		echo "Warning: IPv6 forwarding is currently enabled."
+		echo "         IPv6 address auto-configuration will not be performed"
+		echo "         unless IPv6 forwarding is disabled."
+	fi
+	# TODO: we could implement a "force" option which would set accept_ra to 2
+	# so that users can use SLAAC with forwarding enabled.
+	# http://strugglers.net/~andy/blog/2011/09/04/linux-ipv6-router-advertisements-and-forwarding/comment-page-1/
+
+delete:
+	ifname=pppoe$VAR(../../../@)
+	script=/etc/ppp/ipv6-up.d/50-vyos-$ifname-autoconf
+	sudo rm $script
