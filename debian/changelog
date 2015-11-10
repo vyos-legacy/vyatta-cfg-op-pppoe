@@ -1,3 +1,12 @@
+vyatta-cfg-op-pppoe (0.11.21+vyos2+lithium5) unstable; urgency=low
+
+  [ Patrick van Staveren ]
+  * Bug 600: Fix IPv6 autoconf on PPPoE
+
+  [ Daniil Baturin ]
+
+ -- Daniil Baturin <daniil@baturin.org>  Tue, 10 Nov 2015 08:48:58 +0100
+
 vyatta-cfg-op-pppoe (0.11.21+vyos2+lithium4) unstable; urgency=low
 
   * vyatta-cfg-op-pppoe: update dh_gencontrol with new development flag
