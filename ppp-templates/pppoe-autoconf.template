@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ "$6" != "INTERFACE" ]; then
+	exit
+fi
+
+echo 1 > /proc/sys/net/ipv6/conf/$1/autoconf

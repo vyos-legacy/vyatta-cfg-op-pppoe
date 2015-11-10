@@ -17,3 +17,6 @@ install-exec-hook:
 	chmod 755 $(DESTDIR)/etc/ppp/ip-pre-up.d/0002rename-pppoe
 	mkdir -p $(DESTDIR)/opt/vyatta/etc
 	cp sysconf/pppoe-provider-template $(DESTDIR)/opt/vyatta/etc
+	mkdir -p $(DESTDIR)/opt/vyatta/etc/ppp/templates
+	cp ppp-templates/* $(DESTDIR)/opt/vyatta/etc/ppp/templates/
+	chmod +x $(DESTDIR)/opt/vyatta/etc/ppp/templates/*
