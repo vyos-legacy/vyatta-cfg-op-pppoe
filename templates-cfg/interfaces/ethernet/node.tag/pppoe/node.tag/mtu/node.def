@@ -10,9 +10,9 @@ type: u32
 
 help: Maximum Transmission Unit (MTU)
 
-syntax:expression: $VAR(@) >= 68 && $VAR(@) <= 1492; "MTU must be between 68 and 1492"
+syntax:expression: $VAR(@) >= 68 && $VAR(@) <= 1500; "MTU must be between 68 and 1500"
 
-val_help: u32:68-1492; Maximum Transmission Unit (MTU) in bytes
+val_help: u32:68-1500; Maximum Transmission Unit (MTU) in bytes
 
 default: 1492
 
