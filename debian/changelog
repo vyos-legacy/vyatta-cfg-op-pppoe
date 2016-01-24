@@ -1,3 +1,14 @@
+vyatta-cfg-op-pppoe (0.11.21+vyos2+current1) unstable; urgency=medium
+
+  [ Thomas Jepp ]
+  * Add support for setting MTU to 1500.
+  * Add ifname directives to the per-interface ppp config to handle interface renaming.
+  * Fix build depends.
+
+  [ Kim Hagen ]
+
+ -- Kim Hagen <kim.sidney@gmail.com>  Sun, 24 Jan 2016 15:01:37 -0500
+
 vyatta-cfg-op-pppoe (0.11.21+vyos2+lithium5) unstable; urgency=low
 
   [ Patrick van Staveren ]
