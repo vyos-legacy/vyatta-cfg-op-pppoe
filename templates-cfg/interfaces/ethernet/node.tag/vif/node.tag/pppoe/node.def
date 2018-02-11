@@ -70,7 +70,7 @@ delete:
 #     may not have also been added.
 #  2) Some configuration parameters of a previously existing PPPOE node
 #     have been changed.
-#  3) A previously existing PPPOE configuration node has been deleted.
+#  3) A previously existing PPPOE configuration node has been deleted or disabled
 # 
 # In case (1) we need to start the daemon for the first time.
 # In case (2) we need to kill and restart the daemon.
@@ -80,9 +80,11 @@ end:
 	ifname=pppoe$VAR(@)
 	logfile=/var/log/vyatta/ppp_${ifname}.log
 	echo "`date`: Stopping PPP daemon for $ifname" >> $logfile
-
 	sudo poff pppoe$VAR(@) | logger -p debug -t pppoe$VAR(@)-template
-	if [ -e /etc/ppp/peers/pppoe$VAR(@) ]; then
+
+	if [ "$VAR(@/disable)" != "" ]; then
+		exit 0
+	elif [ -e /etc/ppp/peers/pppoe$VAR(@) ]; then
 		echo "`date`: Starting PPP daemon for $ifname" >> $logfile
                 ( umask 0; sudo /usr/sbin/pppd call pppoe$VAR(@) > \
 		  	/tmp/pppoe$VAR(@).log 2>&1 & )
