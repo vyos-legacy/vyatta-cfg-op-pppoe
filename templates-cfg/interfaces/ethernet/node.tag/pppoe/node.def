@@ -53,7 +53,6 @@ create:
 	sudo sh -c "echo ipparam pppoe$VAR(@) >> /etc/ppp/peers/pppoe$VAR(@)"
 	sudo sh -c "echo debug  >> /etc/ppp/peers/pppoe$VAR(@)"
 	sudo sh -c "echo logfile $logfile  >> /etc/ppp/peers/pppoe$VAR(@)"
-	sudo sh -c "echo ifname $ifname  >> /etc/ppp/peers/pppoe$VAR(@)"
 #
 # Delete means that this node and the tree below it has been deleted.
 # We can delete the PPP provider configuration file.  The running PPPOE
