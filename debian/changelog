@@ -1,3 +1,9 @@
+vyatta-cfg-op-pppoe (1.2.0-1) stable; urgency=medium
+
+  * New branch.
+
+ -- Daniil Baturin <daniil@baturin.org>  Fri, 28 Sep 2018 21:33:29 +0200
+
 vyatta-cfg-op-pppoe (0.11.21+vyos2+current1) unstable; urgency=medium
 
   [ Thomas Jepp ]
