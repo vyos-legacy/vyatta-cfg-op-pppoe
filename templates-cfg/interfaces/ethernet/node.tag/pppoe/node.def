@@ -10,6 +10,8 @@ tag:
 
 type: u32
 
+priority: 320
+
 help: PPPOE unit number
 
 val_help: 0-15; Point-to-Point Protocol over Ethernet (PPPOE) unit number
