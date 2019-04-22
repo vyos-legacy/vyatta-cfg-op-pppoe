@@ -4,16 +4,19 @@
 # Script to re-name ppp interface being used by pppoe or pppoa to have
 # a form: pppoe<unit> or pppoa<unit>.
 #
-# The name of the current ppp interface is passed in as argument 1.  The full
-# name that we are to change it to is passed in as argument 6.  We don't
+# The name of the current ppp interface is passed in as argument 1. The full
+# name that we are to change it to is passed in as argument 6. We don't
 # use the rest of the arguments.
 #
 # We do this before device is brought up so that later scripts
 # can see the correct name, and the interface doesn't have to be
 # bounced
 
+# Script imported from EdgeOS ER-e200.v2.0.1.5174691.tar
+
 OLD_IFNAME=$1
-NEW_IFNAME=$6
+ipparam=($6)
+NEW_IFNAME=${ipparam[0]}
 
 # The ppp daemon executes this script for all ppp interfaces, even those
 # unrelated to pppoe or pppoa.  We want to change the names only of
@@ -25,7 +28,21 @@ if [ "$IFPREFIX" != "pppoe" -a "$IFPREFIX" != "pppoa" ]; then
     exit 0;
 fi
 
-# Re-name the interface.  Log all errors to syslog.
-logger -p debug -t "vyatta pppoe/pppoa"  Re-naming $OLD_IFNAME to $NEW_IFNAME
-ip link set dev $OLD_IFNAME name $NEW_IFNAME | \
-    logger -p debug -t "vyatta pppoe/pppoa"
+LINKADDR=$(ip addr show dev $OLD_IFNAME | grep inet6 | cut -c11-)
+if [ ! -z "$LINKADDR" ]; then
+  ip link set $OLD_IFNAME down
+fi
+
+# Re-name interface - log all errors to syslog.
+logger -p debug -t "VyOS pppoe/pppoa"  Re-naming $OLD_IFNAME to $NEW_IFNAME
+ip link set dev $OLD_IFNAME name $NEW_IFNAME 2>&1 | logger -p debug -t "VyOS pppoe/pppoa"
+if [ ! -z "$LINKADDR" ]; then
+  ip addr add $LINKADDR dev $NEW_IFNAME
+fi
+
+# set link mtu
+MTU=`grep mtu /etc/ppp/peers/$NEW_IFNAME`
+if [ ! -z "$MTU" ]; then
+   ip link set $NEW_IFNAME mtu ${MTU#mtu }
+fi
+
