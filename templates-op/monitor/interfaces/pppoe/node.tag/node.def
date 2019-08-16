@@ -1,2 +1,0 @@
-help: Monitor specified pppoe interface
-allowed: ${vyatta_sbindir}/vyatta-interfaces.pl --show pppoe
