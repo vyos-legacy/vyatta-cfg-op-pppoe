@@ -22,3 +22,4 @@ install-exec-hook:
 	mkdir -p $(DESTDIR)/opt/vyatta/etc/ppp/templates
 	cp ppp-templates/* $(DESTDIR)/opt/vyatta/etc/ppp/templates/
 	chmod +x $(DESTDIR)/opt/vyatta/etc/ppp/templates/*
+	mkdir -p $(DESTDIR)/etc/ppp/ipv6-up.d/
