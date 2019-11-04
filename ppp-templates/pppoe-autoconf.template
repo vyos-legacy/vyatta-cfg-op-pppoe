@@ -4,4 +4,6 @@ if [ "$6" != "INTERFACE" ]; then
 	exit
 fi
 
+echo 0 > /proc/sys/net/ipv6/conf/$1/forwarding
+echo 2 > /proc/sys/net/ipv6/conf/$1/accept_ra
 echo 1 > /proc/sys/net/ipv6/conf/$1/autoconf

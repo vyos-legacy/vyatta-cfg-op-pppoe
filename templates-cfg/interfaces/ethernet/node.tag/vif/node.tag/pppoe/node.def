@@ -12,6 +12,8 @@ type: u32
 
 help: PPPOE unit number
 
+priority: 320
+
 val_help: 0-15; Point-to-Point Protocol over Ethernet (PPPOE) unit number
 
 syntax:expression:  ((($VAR(@) >= 0) && ($VAR(@) <= 15)) ; \
