@@ -7,6 +7,9 @@ help: Enable acquisition of IPv6 address using stateless autoconfig (SLAAC)
 create:
         ifname=pppoe$VAR(../../../@)
         script=/etc/ppp/ipv6-up.d/50-vyos-$ifname-autoconf
+        if [ ! -d /etc/ppp/ipv6-up.d ]; then
+            mkdir /etc/ppp/ipv6-up.d
+        fi
         sudo cp /opt/vyatta/etc/ppp/templates/pppoe-autoconf.template $script
         sudo sh -c "sed -i s:INTERFACE:$ifname:g $script"
         sudo sh -c "chmod +x $script"
