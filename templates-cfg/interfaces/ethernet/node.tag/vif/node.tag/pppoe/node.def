@@ -51,6 +51,7 @@ create:
 	sudo sh -c "echo mru 1492  >> /etc/ppp/peers/pppoe$VAR(@)"
         sudo sh -c "echo defaultroute  >> /etc/ppp/peers/pppoe$VAR(@)"
 	sudo sh -c "echo usepeerdns  >> /etc/ppp/peers/pppoe$VAR(@)"
+	sudo sh -c "echo ifname pppoe$VAR(@) >> /etc/ppp/peers/pppoe$VAR(@)"
 	sudo sh -c "echo ipparam pppoe$VAR(@) >> /etc/ppp/peers/pppoe$VAR(@)"
 	sudo sh -c "echo debug  >> /etc/ppp/peers/pppoe$VAR(@)"
 	sudo sh -c "echo logfile $logfile  >> /etc/ppp/peers/pppoe$VAR(@)"
