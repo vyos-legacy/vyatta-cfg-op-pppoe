@@ -42,12 +42,13 @@ create:
 	sudo rm -f /etc/ppp/peers/pppoe$VAR(@)
 	sudo cp /opt/vyatta/etc/pppoe-provider-template \
 	   /etc/ppp/peers/pppoe$VAR(@) 
-        sudo sh -c "echo plugin rp-pppoe.so >> /etc/ppp/peers/pppoe$VAR(@)" 
-        sudo sh -c "echo $VAR(../../@).$VAR(../@) >> /etc/ppp/peers/pppoe$VAR(@)"
+	sudo sh -c "echo plugin rp-pppoe.so >> /etc/ppp/peers/pppoe$VAR(@)" 
+	sudo sh -c "echo $VAR(../../@).$VAR(../@) >> /etc/ppp/peers/pppoe$VAR(@)"
+	sudo sh -c "echo maxfail 0 >> /etc/ppp/peers/pppoe$VAR(@)"
 	sudo sh -c "echo persist >> /etc/ppp/peers/pppoe$VAR(@)"
 	sudo sh -c "echo mtu 1492  >> /etc/ppp/peers/pppoe$VAR(@)"
 	sudo sh -c "echo mru 1492  >> /etc/ppp/peers/pppoe$VAR(@)"
-        sudo sh -c "echo defaultroute  >> /etc/ppp/peers/pppoe$VAR(@)"
+	sudo sh -c "echo defaultroute  >> /etc/ppp/peers/pppoe$VAR(@)"
 	sudo sh -c "echo usepeerdns  >> /etc/ppp/peers/pppoe$VAR(@)"
 	sudo sh -c "echo ipparam pppoe$VAR(@) >> /etc/ppp/peers/pppoe$VAR(@)"
 	sudo sh -c "echo debug  >> /etc/ppp/peers/pppoe$VAR(@)"
